@@ -1,0 +1,24 @@
+version: "3.9"
+
+volumes:
+  redis_data:
+
+
+services:
+  address_service:
+    build:
+      dockerfile: .deploy/Dockerfile
+      context: .
+    ports:
+      - "8010:8010"
+
+    environment:
+      SRVC_CONFIG: /app/settings/config.json
+      SRVC_LOG: /app/settings/logging.conf
+    depends_on:
+      redis:
+        condition: service_started
+  redis:
+    image: redis
+    volumes:
+      - redis_data:/data

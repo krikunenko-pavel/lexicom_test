@@ -1,0 +1,6 @@
+{
+  "debug": false,
+  "redis": {
+    "dsn": "redis://redis:6379"
+  }
+}
